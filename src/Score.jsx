@@ -3,7 +3,7 @@ import React, { useState } from "react";
 const Plus = (props) => {
   return (
     <svg
-      className="cursor-pointer  group"
+      className="cursor-pointer group"
       onClick={props.clickHandler}
       width="11"
       height="11"
@@ -90,17 +90,15 @@ const Score = (props) => {
   };
 
   return (
-    <div className="text-white text-3xl">
-      <div
-        className="
-          flex flex-col items-center gap-2
-          max-w-[2.5rem] bg-gray-100
+    <div
+      className="
+          flex flex-col items-center justify-center gap-2
+          w-10 h-24 bg-slate-100
           py-4 rounded-md select-none"
-      >
-        <Plus checked={isUpVoted} clickHandler={upVoteHandler} />
-        <span className="text-modrateBlue text-lg font-medium">{score}</span>
-        <Minus checked={isDownVoted} clickHandler={downVoteHandler} />
-      </div>
+    >
+      <Plus checked={isUpVoted} clickHandler={upVoteHandler} />
+      <span className="text-modrateBlue text-lg font-medium">{score}</span>
+      <Minus checked={isDownVoted} clickHandler={downVoteHandler} />
     </div>
   );
 };
