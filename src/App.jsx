@@ -4,7 +4,12 @@ import Comment from "./Comment";
 function App() {
   return (
     <div className="bg-black h-screen">
-      <Comment></Comment>
+      <Comment>
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eligendi
+        officia, cumque, fugit hic dolores quod aperiam qui vitae consequatur
+        iure voluptas veritatis vero sequi delectus magni nesciunt dolor error
+        aliquam!
+      </Comment>
     </div>
   );
 }

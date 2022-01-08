@@ -4,9 +4,9 @@ const Plus = (props) => {
   return (
     <svg
       className="cursor-pointer group"
-      onClick={props.clickHandler}
       width="11"
       height="11"
+      onClick={props.clickHandler}
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
@@ -22,10 +22,10 @@ const Plus = (props) => {
 const Minus = (props) => {
   return (
     <svg
-      className="cursor-pointer  group"
-      onClick={props.clickHandler}
+      className="cursor-pointer group"
       width="11"
       height="3"
+      onClick={props.clickHandler}
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
@@ -92,9 +92,11 @@ const Score = (props) => {
   return (
     <div
       className="
-          flex flex-col items-center justify-center gap-2
-          w-10 h-24 bg-slate-100
-          py-4 rounded-md select-none"
+        bg-veryLightGray
+          flex items-center justify-center
+          gap-4 w-24 h-10
+          sm:flex-col sm:gap-3 sm:h-24 sm:w-10
+          rounded-md select-none"
     >
       <Plus checked={isUpVoted} clickHandler={upVoteHandler} />
       <span className="text-modrateBlue text-lg font-medium">{score}</span>
