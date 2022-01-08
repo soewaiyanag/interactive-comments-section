@@ -1,10 +1,9 @@
 import { useState } from "react";
 import Comment from "./Comment";
-import "./App.css";
 
 function App() {
   return (
-    <div className="App">
+    <div className="bg-black h-screen">
       <Comment></Comment>
     </div>
   );
