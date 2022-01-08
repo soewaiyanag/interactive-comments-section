@@ -5,10 +5,9 @@ function App() {
   return (
     <div className="bg-black h-screen">
       <Comment>
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eligendi
-        officia, cumque, fugit hic dolores quod aperiam qui vitae consequatur
-        iure voluptas veritatis vero sequi delectus magni nesciunt dolor error
-        aliquam!
+        Impressive! Though it seems the drag feature could be improved. But
+        overall it looks incredible. You've nailed the design and the
+        responsiveness at various breakpoints works really well.
       </Comment>
     </div>
   );

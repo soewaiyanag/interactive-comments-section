@@ -11,6 +11,7 @@
     "react-dom": "^17.0.2"
   },
   "devDependencies": {
+    "@savvywombat/tailwindcss-grid-areas": "^2.0.0",
     "@vitejs/plugin-react": "^1.0.7",
     "autoprefixer": "^10.4.1",
     "postcss": "^8.4.5",

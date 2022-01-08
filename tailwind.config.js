@@ -12,7 +12,10 @@ module.exports = {
         lightGrayishBlue: "hsl(239, 57%, 85%)",
         grayishBlue: "hsl(211, 10%, 45%)",
       },
+      gridTemplateAreas: {
+        layout: [],
+      },
     },
   },
-  plugins: [],
+  plugins: [require("@savvywombat/tailwindcss-grid-areas")],
 };
