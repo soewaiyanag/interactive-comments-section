@@ -7,16 +7,17 @@ const Comment = (props) => {
     <section
       className="
       p-4 bg-white rounded-md
-      gap-6 grid grid-cols-2 grid-rows-[repeat(3,auto)]
-      sm:grid-cols-[auto_1fr]"
+      gap-6 grid grid-cols-2 
+      sm:grid-cols-[auto_1fr_auto]"
     >
-      <Score score={12} />
+      <Score score={props.score} />
       <Status />
       <Reply />
       <p
         className="
       text-grayishBlue text-base font-normal
-      col-span-2 sm:col-span-2 sm:col-start-2"
+      col-span-2 sm:col-span-2 sm:col-start-2
+      sm:row-span-2"
       >
         {props.children}
       </p>

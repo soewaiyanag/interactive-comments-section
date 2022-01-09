@@ -97,7 +97,8 @@ const Score = (props) => {
           gap-4 w-24 h-10
           sm:flex-col sm:gap-3 sm:h-24 sm:w-10
           rounded-md select-none
-          col-start-1 row-start-3"
+          col-start-1 row-start-3
+          sm:row-span-3 "
     >
       <Plus checked={isUpVoted} clickHandler={upVoteHandler} />
       <span className="text-modrateBlue text-lg font-medium">{score}</span>

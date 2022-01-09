@@ -4,8 +4,8 @@ const Status = () => {
   return (
     <div
       className="
-      grid-cols-10 flex gap-4 items-center
-      col-span-2
+      flex flex-wrap gap-4 items-center
+      col-span-2 sm:col-start-2 sm:row-start-1
     "
     >
       <img className="h-8" src={profilePicture} alt="profile picture" />
