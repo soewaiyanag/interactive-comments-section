@@ -6,12 +6,16 @@ const Comment = (props) => {
   return (
     <section
       className="
-      p-4 bg-white rounded-md
+      p-4 bg-white rounded-md shadow-sm
       gap-6 grid grid-cols-2 
       sm:grid-cols-[auto_1fr_auto]"
     >
       <Score score={props.score} />
-      <Status />
+      <Status
+        avatar={props.avatar}
+        name={props.name}
+        createdAt={props.createdAt}
+      />
       <Reply />
       <p
         className="

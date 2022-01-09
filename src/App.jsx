@@ -1,14 +1,39 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Comment from "./Comment";
 
 function App() {
+  const [user, setUser] = useState(null);
+  const [comments, setComments] = useState(null);
+  const [isDataLoaded, setIsDataLoaded] = useState(false);
+  useEffect(() => {
+    const data = "../data.json";
+    fetch(data)
+      .then((response) => response.json())
+      .then((value) => {
+        console.log(value);
+        setUser(value.currentUser);
+        setComments(value.comments);
+        setIsDataLoaded(true);
+      });
+    return () => {};
+  }, []);
   return (
-    <div className="p-6 bg-black h-screen">
-      <Comment score={12}>
-        Impressive! Though it seems the drag feature could be improved. But
-        overall it looks incredible. You've nailed the design and the
-        responsiveness at various breakpoints works really well.
-      </Comment>
+    <div className="p-6 space-y-4 bg-veryLightGray min-h-screen">
+      {isDataLoaded
+        ? comments.map((comment) => {
+            return (
+              <Comment
+                key={comment.id}
+                score={comment.score}
+                avatar={comment.user.image.png}
+                name={comment.user.username}
+                createdAt={comment.createdAt}
+              >
+                {comment.content}
+              </Comment>
+            );
+          })
+        : null}
     </div>
   );
 }

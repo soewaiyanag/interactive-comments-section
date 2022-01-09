@@ -1,6 +1,6 @@
 import profilePicture from "./images/avatars/image-amyrobson.png";
 
-const Status = () => {
+const Status = (props) => {
   return (
     <div
       className="
@@ -8,10 +8,10 @@ const Status = () => {
       col-span-2 sm:col-start-2 sm:row-start-1
     "
     >
-      <img className="h-8" src={profilePicture} alt="profile picture" />
-      <h1 className="text-lg text-darkBlue font-bold">amyrobeson</h1>
+      <img className="h-8" src={props.avatar} alt="profile picture" />
+      <h1 className="text-lg text-darkBlue font-bold">{props.name}</h1>
       <span className="text-grayishBlue font-normal text-base">
-        1 month ago
+        {props.createdAt}
       </span>
     </div>
   );
