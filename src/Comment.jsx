@@ -14,6 +14,7 @@ const Comment = (props) => {
       >
         <Score score={props.score} />
         <Status
+          currentUser={props.currentUser}
           avatar={props.avatar}
           name={props.name}
           createdAt={props.createdAt}
@@ -21,15 +22,17 @@ const Comment = (props) => {
         <ReplyIcon />
         <p
           className="
-      text-grayishBlue text-base font-normal
-      col-span-2 sm:col-span-2 sm:col-start-2
-      sm:row-span-2"
+            text-grayishBlue text-base font-normal
+            col-span-2 sm:col-span-2 sm:col-start-2
+            sm:row-span-2"
         >
           {props.children}
         </p>
       </section>
-      <section className="ml-10">
-        {props.replies ? <Reply replies={props.replies} /> : null}
+      <section className="ml-5 sm:ml-8">
+        {props.replies ? (
+          <Reply replies={props.replies} currentUser={props.currentUser} />
+        ) : null}
       </section>
     </div>
   );

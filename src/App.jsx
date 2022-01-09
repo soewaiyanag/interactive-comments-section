@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Comment from "./Comment";
 
 function App() {
-  const [user, setUser] = useState(null);
+  const [currentUser, setCurrentUser] = useState(null);
   const [comments, setComments] = useState(null);
   const [isDataLoaded, setIsDataLoaded] = useState(false);
 
@@ -12,7 +12,7 @@ function App() {
       .then((response) => response.json())
       .then((value) => {
         console.log(value);
-        setUser(value.currentUser);
+        setCurrentUser(value.currentUser);
         setComments(value.comments);
         setIsDataLoaded(true);
       });
@@ -23,6 +23,7 @@ function App() {
     ? comments.map((comment) => {
         return (
           <Comment
+            currentUser={currentUser}
             key={comment.id}
             score={comment.score}
             avatar={comment.user.image.png}

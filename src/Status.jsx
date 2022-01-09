@@ -1,4 +1,6 @@
 const Status = (props) => {
+  const isCurrentUser = props.currentUser.username === props.name;
+
   return (
     <div
       className="
@@ -7,7 +9,22 @@ const Status = (props) => {
     "
     >
       <img className="h-8" src={props.avatar} alt="profile picture" />
-      <h1 className="text-lg text-darkBlue font-semibold">{props.name}</h1>
+      <h1
+        className="text-[1.05rem] text-darkBlue font-semibold
+                    flex items-center gap-2"
+      >
+        {props.name}
+        <span
+          style={{
+            display: isCurrentUser ? null : "none",
+          }}
+          className="bg-modrateBlue text-white
+                   text-xs text-center px-2"
+        >
+          you
+        </span>
+      </h1>
+
       <span className="text-grayishBlue font-normal text-base">
         {props.createdAt}
       </span>
