@@ -5,6 +5,7 @@ function App() {
   const [user, setUser] = useState(null);
   const [comments, setComments] = useState(null);
   const [isDataLoaded, setIsDataLoaded] = useState(false);
+
   useEffect(() => {
     const data = "../data.json";
     fetch(data)
@@ -17,24 +18,26 @@ function App() {
       });
     return () => {};
   }, []);
+
+  const CommentItems = isDataLoaded
+    ? comments.map((comment) => {
+        return (
+          <Comment
+            key={comment.id}
+            score={comment.score}
+            avatar={comment.user.image.png}
+            name={comment.user.username}
+            createdAt={comment.createdAt}
+            replies={comment.replies}
+          >
+            {comment.content}
+          </Comment>
+        );
+      })
+    : null;
+
   return (
-    <div className="p-6 space-y-4 bg-veryLightGray min-h-screen">
-      {isDataLoaded
-        ? comments.map((comment) => {
-            return (
-              <Comment
-                key={comment.id}
-                score={comment.score}
-                avatar={comment.user.image.png}
-                name={comment.user.username}
-                createdAt={comment.createdAt}
-              >
-                {comment.content}
-              </Comment>
-            );
-          })
-        : null}
-    </div>
+    <div className="p-6 bg-veryLightGray min-h-screen">{CommentItems}</div>
   );
 }
 

@@ -1,16 +1,21 @@
-import replyIcon from "./images/icon-reply.svg";
-const Reply = () => {
-  return (
-    <div
-      className="
-      cursor-pointer ml-auto space-x-1.5
-      col-start-2 row-start-3 self-center
-      sm:row-start-1"
-    >
-      <img className="inline-block" src={replyIcon} alt="reply_icon" />
-      <span className="font-bold text-modrateBlue">Reply</span>
-    </div>
-  );
+import Comment from "./Comment";
+
+const Reply = (props) => {
+  const replies = props.replies;
+
+  return replies.map((reply) => {
+    return (
+      <Comment
+        key={reply.id}
+        score={reply.score}
+        avatar={reply.user.image.png}
+        name={reply.user.username}
+        createdAt={reply.createdAt}
+      >
+        {reply.content}
+      </Comment>
+    );
+  });
 };
 
 export default Reply;

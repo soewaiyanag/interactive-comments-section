@@ -1,5 +1,3 @@
-import profilePicture from "./images/avatars/image-amyrobson.png";
-
 const Status = (props) => {
   return (
     <div
@@ -9,7 +7,7 @@ const Status = (props) => {
     "
     >
       <img className="h-8" src={props.avatar} alt="profile picture" />
-      <h1 className="text-lg text-darkBlue font-bold">{props.name}</h1>
+      <h1 className="text-lg text-darkBlue font-semibold">{props.name}</h1>
       <span className="text-grayishBlue font-normal text-base">
         {props.createdAt}
       </span>
