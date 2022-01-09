@@ -19,26 +19,26 @@ function App() {
     return () => {};
   }, []);
 
-  const CommentItems = isDataLoaded
-    ? comments.map((comment) => {
-        return (
-          <Comment
-            currentUser={currentUser}
-            key={comment.id}
-            score={comment.score}
-            avatar={comment.user.image.png}
-            name={comment.user.username}
-            createdAt={comment.createdAt}
-            replies={comment.replies}
-          >
-            {comment.content}
-          </Comment>
-        );
-      })
-    : null;
-
   return (
-    <div className="p-6 bg-veryLightGray min-h-screen">{CommentItems}</div>
+    <div className="p-6 bg-veryLightGray min-h-screen">
+      {isDataLoaded
+        ? comments.map((comment) => {
+            return (
+              <Comment
+                currentUser={currentUser}
+                key={comment.id}
+                score={comment.score}
+                avatar={comment.user.image.png}
+                name={comment.user.username}
+                createdAt={comment.createdAt}
+                replies={comment.replies}
+              >
+                {comment.content}
+              </Comment>
+            );
+          })
+        : null}
+    </div>
   );
 }
 
