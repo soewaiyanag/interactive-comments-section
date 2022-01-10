@@ -39,7 +39,9 @@ function App() {
               );
             })
           : null}
-        <WriteComment btnValue="SEND" />
+        <div className="my-6">
+          {isDataLoaded ? <WriteComment btnValue="SEND" /> : null}
+        </div>
       </div>
     </UserContext.Provider>
   );
