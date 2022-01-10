@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import ReplyIcon from "./ReplyIcon";
 import Score from "./Score";
 import Status from "./Status";

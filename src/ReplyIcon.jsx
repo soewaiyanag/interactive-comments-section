@@ -7,7 +7,7 @@ const ReplyIcon = (props) => {
       className="
       cursor-pointer ml-auto space-x-1.5
       col-start-2 row-start-3 self-center
-      sm:row-start-1 select-none hover:opacity-75
+      sm:row-start-1 select-none active:opacity-75
       transition-opacity"
     >
       <img className="inline-block" src={replyIcon} alt="reply_icon" />

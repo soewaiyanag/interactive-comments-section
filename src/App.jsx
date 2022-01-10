@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Comment from "./Comment";
 import UserContext from "./CurrentUserContext";
+import WriteComment from "./WriteComment";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
@@ -38,6 +39,7 @@ function App() {
               );
             })
           : null}
+        <WriteComment btnValue="SEND" />
       </div>
     </UserContext.Provider>
   );
