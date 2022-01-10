@@ -1,3 +1,4 @@
+import React, { useState, useRef } from "react";
 import ReplyIcon from "./ReplyIcon";
 import Score from "./Score";
 import Status from "./Status";
@@ -5,6 +6,11 @@ import Reply from "./Reply";
 import WriteReply from "./WriteReply";
 
 const Comment = (props) => {
+  const [showWriteReply, setShowWriteReply] = useState(false);
+
+  const replyHandler = () => {
+    setShowWriteReply(!showWriteReply);
+  };
   return (
     <div>
       <section
@@ -19,7 +25,7 @@ const Comment = (props) => {
           name={props.name}
           createdAt={props.createdAt}
         />
-        <ReplyIcon />
+        <ReplyIcon replyHandler={replyHandler} />
         <p
           className="
             text-grayishBlue text-base font-normal
@@ -32,9 +38,7 @@ const Comment = (props) => {
       <section className="border-l-2 pl-5 sm:ml-8 sm:pl-7">
         {props.replies ? <Reply replies={props.replies} /> : null}
       </section>
-      <section>
-        <WriteReply />
-      </section>
+      <section>{showWriteReply ? <WriteReply /> : null}</section>
     </div>
   );
 };
