@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
+import UserContext from "./CurrentUserContext";
 
 const WriteReply = (props) => {
+  const currentUser = useContext(UserContext);
   return (
     <div
-      className="grid gap-4 grid-cols-2
+      className="my-4 grid gap-4 grid-cols-2
                 bg-white shadow-sm -mt-2 p-4
                 sm:grid-cols-[auto_1fr_auto]"
     >
-      <img className="h-10" src={props.avatar} alt="avator" />
+      <img className="h-10" src={currentUser.image.png} alt="avator" />
       <textarea
         className="rounded px-5 py-2 min-h-[5rem]
                     resize-none text-base border-2

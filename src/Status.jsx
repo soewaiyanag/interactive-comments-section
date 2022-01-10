@@ -1,5 +1,9 @@
+import React, { useContext } from "react";
+import UserContext from "./CurrentUserContext";
+
 const Status = (props) => {
-  const isCurrentUser = props.currentUser.username === props.name;
+  const currentUser = useContext(UserContext);
+  const isCurrentUser = currentUser.username === props.name;
 
   return (
     <div

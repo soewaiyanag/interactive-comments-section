@@ -15,7 +15,6 @@ const Comment = (props) => {
       >
         <Score score={props.score} />
         <Status
-          currentUser={props.currentUser}
           avatar={props.avatar}
           name={props.name}
           createdAt={props.createdAt}
@@ -31,12 +30,10 @@ const Comment = (props) => {
         </p>
       </section>
       <section className="border-l-2 pl-5 sm:ml-8 sm:pl-7">
-        {props.replies ? (
-          <Reply replies={props.replies} currentUser={props.currentUser} />
-        ) : null}
+        {props.replies ? <Reply replies={props.replies} /> : null}
       </section>
       <section>
-        <WriteReply avatar={props.avatar} />
+        <WriteReply />
       </section>
     </div>
   );
