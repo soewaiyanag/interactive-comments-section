@@ -7,17 +7,23 @@ function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const [comments, setComments] = useState(null);
   const [isDataLoaded, setIsDataLoaded] = useState(false);
+
   useEffect(() => {
-    const data = "../data.json";
-    fetch(data)
+    const dataURL = "../data.json";
+    fetch(dataURL)
       .then((response) => response.json())
       .then((value) => {
-        console.log(value);
-        setCurrentUser(value.currentUser);
-        setComments(value.comments);
+        let dataObj = JSON.parse(localStorage.getItem("data"));
+
+        if (dataObj === null) {
+          dataObj = value;
+          localStorage.setItem("data", JSON.stringify(value));
+        }
+
+        setCurrentUser(dataObj.currentUser);
+        setComments(dataObj.comments);
         setIsDataLoaded(true);
       });
-    return () => {};
   }, []);
 
   return (
