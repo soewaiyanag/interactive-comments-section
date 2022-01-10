@@ -35,10 +35,10 @@ const Comment = (props) => {
           {props.children}
         </p>
       </section>
+      <section>{showWriteReply ? <WriteReply /> : null}</section>
       <section className="border-l-2 pl-5 sm:ml-8 sm:pl-7">
         {props.replies ? <Reply replies={props.replies} /> : null}
       </section>
-      <section>{showWriteReply ? <WriteReply /> : null}</section>
     </div>
   );
 };
