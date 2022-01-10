@@ -29,7 +29,7 @@ const Comment = (props) => {
           {props.children}
         </p>
       </section>
-      <section className="ml-5 sm:ml-8">
+      <section className="border-l-2 pl-5 sm:ml-8 sm:pl-7">
         {props.replies ? (
           <Reply replies={props.replies} currentUser={props.currentUser} />
         ) : null}

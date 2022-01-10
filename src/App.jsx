@@ -20,7 +20,7 @@ function App() {
   }, []);
 
   return (
-    <div className="p-6 bg-veryLightGray min-h-screen">
+    <div className="min-h-screen max-w-3xl mx-auto">
       {isDataLoaded
         ? comments.map((comment) => {
             return (
