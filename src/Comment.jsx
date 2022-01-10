@@ -2,6 +2,7 @@ import ReplyIcon from "./ReplyIcon";
 import Score from "./Score";
 import Status from "./Status";
 import Reply from "./Reply";
+import WriteReply from "./WriteReply";
 
 const Comment = (props) => {
   return (
@@ -33,6 +34,9 @@ const Comment = (props) => {
         {props.replies ? (
           <Reply replies={props.replies} currentUser={props.currentUser} />
         ) : null}
+      </section>
+      <section>
+        <WriteReply avatar={props.avatar} />
       </section>
     </div>
   );
