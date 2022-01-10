@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
+import uniqid from "uniqid";
 import Comment from "./Comment";
 import UserContext from "./CurrentUserContext";
 import WriteComment from "./WriteComment";
-
+import useStickyState from "./hook/useStickyState";
 function App() {
-  const [currentUser, setCurrentUser] = useState(null);
-  const [comments, setComments] = useState(null);
+  // const [currentUser, setCurrentUser] = useState(null);
+  const [currentUser, setCurrentUser] = useStickyState(null, "currentUser");
+  const [comments, setComments] = useStickyState(null, "comments");
   const [isDataLoaded, setIsDataLoaded] = useState(false);
 
   useEffect(() => {
@@ -13,18 +15,18 @@ function App() {
     fetch(dataURL)
       .then((response) => response.json())
       .then((value) => {
-        let dataObj = JSON.parse(localStorage.getItem("data"));
+        const currentUserData = JSON.parse(localStorage.getItem("currentUser"));
+        const commentsData = JSON.parse(localStorage.getItem("comments"));
 
-        if (dataObj === null) {
-          dataObj = value;
-          localStorage.setItem("data", JSON.stringify(value));
+        if (currentUserData === null || commentsData === null) {
+          setCurrentUser(value.currentUser);
+          setComments(value.comments);
         }
-
-        setCurrentUser(dataObj.currentUser);
-        setComments(dataObj.comments);
         setIsDataLoaded(true);
+        console.log(comments);
+        console.log(uniqid());
       });
-  }, []);
+  }, [currentUser, comments]);
 
   return (
     <UserContext.Provider value={currentUser}>
@@ -33,6 +35,7 @@ function App() {
           ? comments.map((comment) => {
               return (
                 <Comment
+                  id={comments.id}
                   key={comment.id}
                   score={comment.score}
                   avatar={comment.user.image.png}

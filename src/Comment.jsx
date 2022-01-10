@@ -11,6 +11,7 @@ const Comment = (props) => {
   const replyHandler = () => {
     setShowWriteReply(!showWriteReply);
   };
+
   return (
     <div>
       <section
