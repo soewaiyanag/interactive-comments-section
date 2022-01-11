@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import UserContext from "./CurrentUserContext";
+import UserContext from "../CurrentUserContext";
 
 const WriteComment = (props) => {
   const { currentUser } = useContext(UserContext);

@@ -1,4 +1,4 @@
-import replyIcon from "./images/icon-reply.svg";
+import replyIcon from "../images/icon-reply.svg";
 
 const ReplyIcon = (props) => {
   return (

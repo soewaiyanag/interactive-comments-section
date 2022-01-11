@@ -6,7 +6,7 @@ import Score from "./Score";
 import Status from "./Status";
 import Reply from "./Reply";
 import WriteReply from "./WriteReply";
-import UserContext from "./CurrentUserContext";
+import UserContext from "../CurrentUserContext";
 
 const Comment = (props) => {
   // STATES
@@ -26,7 +26,10 @@ const Comment = (props) => {
     setIsEditable(!isEditable);
   };
 
-  const updateMessage = () => {};
+  const updateMessage = () => {
+    console.log(props.data);
+    console.log(comments);
+  };
 
   return (
     <div>
@@ -67,7 +70,7 @@ const Comment = (props) => {
               <textarea
                 className="
                 w-full
-                rounded px-5 py-2 min-h-[10rem]
+                rounded px-5 py-2 min-h-[8rem]
                 resize-none text-base border-2"
                 value={message}
                 onChange={(e) => {

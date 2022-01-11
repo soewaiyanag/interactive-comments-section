@@ -1,4 +1,4 @@
-import deleteIcon from "./images/icon-delete.svg";
+import deleteIcon from "../images/icon-delete.svg";
 
 const DeleteIcon = (props) => {
   return (

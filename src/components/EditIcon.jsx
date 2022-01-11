@@ -1,4 +1,4 @@
-import editIcon from "./images/icon-edit.svg";
+import editIcon from "../images/icon-edit.svg";
 
 const EditIcon = (props) => {
   return (

@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import uniqid from "uniqid";
-import Comment from "./Comment";
+import Comment from "./components/Comment";
 import UserContext from "./CurrentUserContext";
-import WriteComment from "./WriteComment";
+import WriteComment from "./components/WriteComment";
 import useStickyState from "./hook/useStickyState";
 function App() {
   const [currentUser, setCurrentUser] = useStickyState(null, "currentUser");
