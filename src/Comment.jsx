@@ -1,13 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import ReplyIcon from "./ReplyIcon";
+import EditIcon from "./EditIcon";
+import DeleteIcon from "./DeleteIcon";
 import Score from "./Score";
 import Status from "./Status";
 import Reply from "./Reply";
 import WriteReply from "./WriteReply";
+import UserContext from "./CurrentUserContext";
 
 const Comment = (props) => {
   const [showWriteReply, setShowWriteReply] = useState(false);
 
+  const currentUser = useContext(UserContext);
+  const isCurrentUser = currentUser.username === props.name;
+
+  console.log(currentUser);
   const replyHandler = () => {
     setShowWriteReply(!showWriteReply);
   };
@@ -26,7 +33,20 @@ const Comment = (props) => {
           name={props.name}
           createdAt={props.createdAt}
         />
-        <ReplyIcon replyHandler={replyHandler} />
+        <section
+          className="cursor-pointer ml-auto
+                      col-start-2 row-start-3 self-center
+                      sm:row-start-1"
+        >
+          {isCurrentUser ? (
+            <div className="flex gap-5">
+              <DeleteIcon />
+              <EditIcon />
+            </div>
+          ) : (
+            <ReplyIcon clickHandler={replyHandler} />
+          )}
+        </section>
         <p
           className="
             text-grayishBlue text-base font-normal
@@ -36,6 +56,7 @@ const Comment = (props) => {
           {props.children}
         </p>
       </section>
+      <section>{isCurrentUser}</section>
       <section>{showWriteReply ? <WriteReply /> : null}</section>
       <section className="border-l-2 pl-5 sm:ml-8 sm:pl-7">
         {props.replies ? <Reply replies={props.replies} /> : null}
