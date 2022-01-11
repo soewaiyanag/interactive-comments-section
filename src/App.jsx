@@ -5,12 +5,9 @@ import UserContext from "./CurrentUserContext";
 import WriteComment from "./WriteComment";
 import useStickyState from "./hook/useStickyState";
 function App() {
-  // const [currentUser, setCurrentUser] = useState(null);
   const [currentUser, setCurrentUser] = useStickyState(null, "currentUser");
   const [comments, setComments] = useStickyState(null, "comments");
   const [isDataLoaded, setIsDataLoaded] = useState(false);
-
-  console.log(comments);
 
   useEffect(() => {
     const dataURL = "../data.json";
@@ -25,25 +22,19 @@ function App() {
           setComments(value.comments);
         }
         setIsDataLoaded(true);
-        console.log(comments);
-        console.log(uniqid());
       });
   }, [currentUser, comments]);
 
   return (
-    <UserContext.Provider value={currentUser}>
+    <UserContext.Provider value={{ comments, currentUser }}>
       <div className="min-h-screen max-w-3xl mx-auto">
         {isDataLoaded
           ? comments.map((comment) => {
               return (
                 <Comment
-                  id={comment.id}
+                  updateComments={setComments}
                   key={comment.id}
-                  score={comment.score}
-                  avatar={comment.user.image.png}
-                  name={comment.user.username}
-                  createdAt={comment.createdAt}
-                  replies={comment.replies}
+                  data={comment}
                 >
                   {comment.content}
                 </Comment>

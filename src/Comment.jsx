@@ -9,12 +9,14 @@ import WriteReply from "./WriteReply";
 import UserContext from "./CurrentUserContext";
 
 const Comment = (props) => {
+  // STATES
   const [showWriteReply, setShowWriteReply] = useState(false);
   const [isEditable, setIsEditable] = useState(false);
   const [message, setMessage] = useState(props.children);
 
-  const currentUser = useContext(UserContext);
-  const isCurrentUser = currentUser.username === props.name;
+  // VARIABLES
+  const { comments, currentUser } = useContext(UserContext);
+  const isCurrentUser = currentUser.username === props.data.user.username;
 
   const replyClickHandler = () => {
     setShowWriteReply(!showWriteReply);
@@ -24,9 +26,7 @@ const Comment = (props) => {
     setIsEditable(!isEditable);
   };
 
-  const updateMessage = () => {
-    setIsEditable(false);
-  };
+  const updateMessage = () => {};
 
   return (
     <div>
@@ -36,16 +36,13 @@ const Comment = (props) => {
       gap-6 grid grid-cols-2 
       sm:grid-cols-[auto_1fr_auto]"
       >
-        <Score score={props.score} />
+        <Score score={props.data.score} />
         <Status
-          avatar={props.avatar}
-          name={props.name}
-          createdAt={props.createdAt}
+          avatar={props.data.user.image.png}
+          username={props.data.user.username}
+          createdAt={props.data.createdAt}
         />
         <section
-          style={{
-            pointerEvents: isEditable ? "none" : "all",
-          }}
           className="cursor-pointer ml-auto
                       col-start-2 row-start-3 self-center
                       sm:row-start-1"
@@ -94,7 +91,9 @@ const Comment = (props) => {
       {/* <section>{isCurrentUser}</section> */}
       <section>{showWriteReply ? <WriteReply /> : null}</section>
       <section className="border-l-2 pl-5 sm:ml-8 sm:pl-7">
-        {props.replies ? <Reply replies={props.replies} /> : null}
+        {props.data.replies.length ? (
+          <Reply replies={props.data.replies} />
+        ) : null}
       </section>
     </div>
   );

@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import UserContext from "./CurrentUserContext";
 
 const WriteComment = (props) => {
-  const currentUser = useContext(UserContext);
+  const { currentUser } = useContext(UserContext);
   return (
     <div
       className="my-4 grid gap-4 grid-cols-2

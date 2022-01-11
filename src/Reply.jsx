@@ -5,14 +5,7 @@ const Reply = (props) => {
 
   return replies.map((reply) => {
     return (
-      <Comment
-        id={reply.id}
-        key={reply.id}
-        score={reply.score}
-        avatar={reply.user.image.png}
-        name={reply.user.username}
-        createdAt={reply.createdAt}
-      >
+      <Comment id={reply.id} key={reply.id} data={reply}>
         {reply.content}
       </Comment>
     );

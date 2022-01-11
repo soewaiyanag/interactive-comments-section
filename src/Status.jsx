@@ -2,8 +2,8 @@ import React, { useContext } from "react";
 import UserContext from "./CurrentUserContext";
 
 const Status = (props) => {
-  const currentUser = useContext(UserContext);
-  const isCurrentUser = currentUser.username === props.name;
+  const { currentUser } = useContext(UserContext);
+  const isCurrentUser = currentUser.username === props.username;
 
   return (
     <div
@@ -17,7 +17,7 @@ const Status = (props) => {
         className="text-[1.05rem] text-darkBlue font-semibold
                     flex items-center gap-2"
       >
-        {props.name}
+        {props.username}
         <span
           style={{
             display: isCurrentUser ? null : "none",
