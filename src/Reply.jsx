@@ -6,7 +6,7 @@ const Reply = (props) => {
   return replies.map((reply) => {
     return (
       <Comment
-        currentUser={props.currentUser}
+        id={reply.id}
         key={reply.id}
         score={reply.score}
         avatar={reply.user.image.png}

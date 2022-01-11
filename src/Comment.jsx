@@ -10,13 +10,30 @@ import UserContext from "./CurrentUserContext";
 
 const Comment = (props) => {
   const [showWriteReply, setShowWriteReply] = useState(false);
+  const [isEditable, setIsEditable] = useState(false);
+  const [message, setMessage] = useState(props.children);
 
   const currentUser = useContext(UserContext);
   const isCurrentUser = currentUser.username === props.name;
 
-  console.log(currentUser);
-  const replyHandler = () => {
+  const replyClickHandler = () => {
     setShowWriteReply(!showWriteReply);
+  };
+
+  const editClickHandler = () => {
+    setIsEditable(!isEditable);
+  };
+
+  const EditMessage = () => {
+    return (
+      <textarea
+        className="
+      w-full
+      rounded px-5 py-2 min-h-[10rem]
+      resize-none text-base border-2"
+        value={message}
+      ></textarea>
+    );
   };
 
   return (
@@ -41,10 +58,10 @@ const Comment = (props) => {
           {isCurrentUser ? (
             <div className="flex gap-5">
               <DeleteIcon />
-              <EditIcon />
+              <EditIcon clickHandler={editClickHandler} />
             </div>
           ) : (
-            <ReplyIcon clickHandler={replyHandler} />
+            <ReplyIcon clickHandler={replyClickHandler} />
           )}
         </section>
         <p
@@ -53,7 +70,7 @@ const Comment = (props) => {
             col-span-2 sm:col-span-2 sm:col-start-2
             sm:row-span-2"
         >
-          {props.children}
+          {isEditable ? <EditMessage /> : message}
         </p>
       </section>
       <section>{isCurrentUser}</section>

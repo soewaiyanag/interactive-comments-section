@@ -35,7 +35,7 @@ function App() {
           ? comments.map((comment) => {
               return (
                 <Comment
-                  id={comments.id}
+                  id={comment.id}
                   key={comment.id}
                   score={comment.score}
                   avatar={comment.user.image.png}
