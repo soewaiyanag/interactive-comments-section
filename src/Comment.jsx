@@ -24,6 +24,10 @@ const Comment = (props) => {
     setIsEditable(!isEditable);
   };
 
+  const updateMessage = () => {
+    setIsEditable(false);
+  };
+
   return (
     <div>
       <section
@@ -39,6 +43,9 @@ const Comment = (props) => {
           createdAt={props.createdAt}
         />
         <section
+          style={{
+            pointerEvents: isEditable ? "none" : "all",
+          }}
           className="cursor-pointer ml-auto
                       col-start-2 row-start-3 self-center
                       sm:row-start-1"
@@ -71,9 +78,10 @@ const Comment = (props) => {
                 }}
               />
               <button
-                className="py-2 px-5 bg-modrateBlue 
+                className="py-2 px-5 bg-modrateBlue
                 text-white h-fit max-w-fit rounded 
                 active:bg-opacity-75 self-end"
+                onClick={updateMessage}
               >
                 UPDATE
               </button>
@@ -83,7 +91,7 @@ const Comment = (props) => {
           )}
         </section>
       </section>
-      <section>{isCurrentUser}</section>
+      {/* <section>{isCurrentUser}</section> */}
       <section>{showWriteReply ? <WriteReply /> : null}</section>
       <section className="border-l-2 pl-5 sm:ml-8 sm:pl-7">
         {props.replies ? <Reply replies={props.replies} /> : null}

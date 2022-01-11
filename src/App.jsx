@@ -10,6 +10,8 @@ function App() {
   const [comments, setComments] = useStickyState(null, "comments");
   const [isDataLoaded, setIsDataLoaded] = useState(false);
 
+  console.log(comments);
+
   useEffect(() => {
     const dataURL = "../data.json";
     fetch(dataURL)

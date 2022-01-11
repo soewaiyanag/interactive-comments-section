@@ -21,8 +21,8 @@ const WriteComment = (props) => {
       />
       <button
         className="py-2 px-5 bg-modrateBlue 
-                text-white h-fit rounded 
-                active:bg-opacity-75"
+                text-white h-fit max-w-fit rounded 
+                active:bg-opacity-75 justify-self-end"
       >
         {props.btnValue}
       </button>
