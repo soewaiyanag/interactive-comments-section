@@ -24,18 +24,6 @@ const Comment = (props) => {
     setIsEditable(!isEditable);
   };
 
-  const EditMessage = () => {
-    return (
-      <textarea
-        className="
-      w-full
-      rounded px-5 py-2 min-h-[10rem]
-      resize-none text-base border-2"
-        value={message}
-      ></textarea>
-    );
-  };
-
   return (
     <div>
       <section
@@ -64,14 +52,36 @@ const Comment = (props) => {
             <ReplyIcon clickHandler={replyClickHandler} />
           )}
         </section>
-        <p
+        <section
           className="
             text-grayishBlue text-base font-normal
             col-span-2 sm:col-span-2 sm:col-start-2
             sm:row-span-2"
         >
-          {isEditable ? <EditMessage /> : message}
-        </p>
+          {isEditable ? (
+            <div className="flex flex-col gap-4">
+              <textarea
+                className="
+                w-full
+                rounded px-5 py-2 min-h-[10rem]
+                resize-none text-base border-2"
+                value={message}
+                onChange={(e) => {
+                  setMessage(e.target.value);
+                }}
+              />
+              <button
+                className="py-2 px-5 bg-modrateBlue 
+                text-white h-fit max-w-fit rounded 
+                active:bg-opacity-75 self-end"
+              >
+                UPDATE
+              </button>
+            </div>
+          ) : (
+            <p>{message}</p>
+          )}
+        </section>
       </section>
       <section>{isCurrentUser}</section>
       <section>{showWriteReply ? <WriteReply /> : null}</section>
