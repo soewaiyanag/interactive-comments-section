@@ -4,6 +4,7 @@ import Comment from "./components/Comment";
 import UserContext from "./CurrentUserContext";
 import WriteComment from "./components/WriteComment";
 import useStickyState from "./hook/useStickyState";
+
 function App() {
   const [currentUser, setCurrentUser] = useStickyState(null, "currentUser");
   const [comments, setComments] = useStickyState(null, "comments");

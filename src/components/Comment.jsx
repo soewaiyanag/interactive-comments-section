@@ -7,16 +7,29 @@ import Status from "./Status";
 import Reply from "./Reply";
 import WriteReply from "./WriteReply";
 import UserContext from "../CurrentUserContext";
+import { _ } from "lodash";
 
 const Comment = (props) => {
   // STATES
   const [showWriteReply, setShowWriteReply] = useState(false);
   const [isEditable, setIsEditable] = useState(false);
-  const [message, setMessage] = useState(props.children);
+  const [content, setContent] = useState(props.children);
 
   // VARIABLES
   const { comments, currentUser } = useContext(UserContext);
   const isCurrentUser = currentUser.username === props.data.user.username;
+
+  // FUNCTIONS
+
+  function updateContent(comments, id) {
+    comments.forEach((comment) => {
+      if (_.isEqual(comment.id, id)) {
+        comment.content = content;
+      } else {
+        updateContent(comment.replies, id);
+      }
+    });
+  }
 
   const replyClickHandler = () => {
     setShowWriteReply(!showWriteReply);
@@ -24,11 +37,6 @@ const Comment = (props) => {
 
   const editClickHandler = () => {
     setIsEditable(!isEditable);
-  };
-
-  const updateMessage = () => {
-    console.log(props.data);
-    console.log(comments);
   };
 
   return (
@@ -72,22 +80,26 @@ const Comment = (props) => {
                 w-full
                 rounded px-5 py-2 min-h-[8rem]
                 resize-none text-base border-2"
-                value={message}
+                value={content}
                 onChange={(e) => {
-                  setMessage(e.target.value);
+                  setContent(e.target.value);
                 }}
               />
               <button
                 className="py-2 px-5 bg-modrateBlue
                 text-white h-fit max-w-fit rounded 
                 active:bg-opacity-75 self-end"
-                onClick={updateMessage}
+                onClick={() => {
+                  updateContent(comments, props.data.id);
+                  setIsEditable(false);
+                  console.log(props.data);
+                }}
               >
                 UPDATE
               </button>
             </div>
           ) : (
-            <p>{message}</p>
+            <p>{content}</p>
           )}
         </section>
       </section>
