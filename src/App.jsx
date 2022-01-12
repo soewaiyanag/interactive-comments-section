@@ -27,16 +27,12 @@ function App() {
   }, [currentUser, comments]);
 
   return (
-    <UserContext.Provider value={{ comments, currentUser }}>
+    <UserContext.Provider value={{ comments, setComments, currentUser }}>
       <div className="min-h-screen max-w-3xl mx-auto">
         {isDataLoaded
           ? comments.map((comment) => {
               return (
-                <Comment
-                  updateComments={setComments}
-                  key={comment.id}
-                  data={comment}
-                >
+                <Comment key={comment.id} data={comment}>
                   {comment.content}
                 </Comment>
               );

@@ -10,23 +10,27 @@ import UserContext from "../CurrentUserContext";
 import { _ } from "lodash";
 
 const Comment = (props) => {
-  // STATES
+  /*---- STATES ----*/
   const [showWriteReply, setShowWriteReply] = useState(false);
   const [isEditable, setIsEditable] = useState(false);
   const [content, setContent] = useState(props.children);
 
-  // VARIABLES
-  const { comments, currentUser } = useContext(UserContext);
+  /*---- VARIABLES ----*/
+  const { comments, setComments, currentUser } = useContext(UserContext);
   const isCurrentUser = currentUser.username === props.data.user.username;
 
-  // FUNCTIONS
+  // clone the comments(array of objs) so that it won't affect comments[state]
+  const commentsClone = comments.map((cmt) => Object.assign({}, cmt));
 
-  function updateContent(comments, id) {
-    comments.forEach((comment) => {
-      if (_.isEqual(comment.id, id)) {
-        comment.content = content;
+  /*---- FUNCTIONS ----*/
+
+  function updateContent(cmts, id) {
+    cmts.forEach((cmt) => {
+      if (_.isEqual(cmt.id, id)) {
+        cmt.content = content;
+        setComments(commentsClone);
       } else {
-        updateContent(comment.replies, id);
+        updateContent(cmt.replies, id);
       }
     });
   }
@@ -90,9 +94,8 @@ const Comment = (props) => {
                 text-white h-fit max-w-fit rounded 
                 active:bg-opacity-75 self-end"
                 onClick={() => {
-                  updateContent(comments, props.data.id);
+                  updateContent(commentsClone, props.data.id);
                   setIsEditable(false);
-                  console.log(props.data);
                 }}
               >
                 UPDATE
