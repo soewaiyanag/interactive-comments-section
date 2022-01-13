@@ -4,4 +4,4 @@
 
 ## preview link
 
-[link to preview website](https://mystifying-neumann-f96535.netlify.app/)
+[link to preview website](https://pedantic-almeida-55db4b.netlify.app/)
