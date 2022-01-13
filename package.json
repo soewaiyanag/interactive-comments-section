@@ -1,13 +1,10 @@
 {
-  "homepage": "https://github.com/soewaiyanag/interactive-comments-section",
   "name": "comment-section",
   "version": "0.0.0",
   "scripts": {
     "dev": "vite --open",
     "build": "vite build",
-    "preview": "vite preview",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "preview": "vite preview"
   },
   "dependencies": {
     "lodash": "^4.17.21",
@@ -20,7 +17,6 @@
     "@savvywombat/tailwindcss-grid-areas": "^2.0.0",
     "@vitejs/plugin-react": "^1.0.7",
     "autoprefixer": "^10.4.1",
-    "gh-pages": "^3.2.3",
     "postcss": "^8.4.5",
     "tailwindcss": "^3.0.11",
     "tailwindcss-cli": "^0.1.2",
