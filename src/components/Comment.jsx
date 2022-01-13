@@ -48,7 +48,7 @@ const Comment = (props) => {
   };
 
   const replyClickHandler = () => {
-    setShowWriteComment(!showWriteReply);
+    setShowWriteComment(!showWriteComment);
   };
 
   const editClickHandler = () => {
