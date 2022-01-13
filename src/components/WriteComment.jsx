@@ -1,8 +1,37 @@
-import React, { useContext } from "react";
+import React, { useState, useContext } from "react";
 import UserContext from "../CurrentUserContext";
+import uniqid from "uniqid";
+import { _ } from "lodash";
+
+const createNewComment = (id, content, user) => {
+  return {
+    id,
+    content,
+    user,
+    createdAt: "0 second ago",
+    replies: [],
+    score: 0,
+  };
+};
 
 const WriteComment = (props) => {
-  const { currentUser } = useContext(UserContext);
+  const [content, setContent] = useState("");
+  const { comments, setComments, currentUser } = useContext(UserContext);
+
+  // clone the comments(array of objs) so that it won't affect comments[state]
+  const commentsClone = comments.map((cmt) => Object.assign({}, cmt));
+
+  const sendComment = (cmts, id, reply) => {
+    cmts.forEach((cmt) => {
+      if (_.isEqual(cmt.id, id)) {
+        cmt.replies.push(reply);
+        setComments(commentsClone);
+      } else {
+        sendComment(cmt.replies, id);
+      }
+    });
+  };
+
   return (
     <div
       className="my-4 grid gap-4 grid-cols-2
@@ -16,13 +45,18 @@ const WriteComment = (props) => {
                     col-span-2 row-start-1
                     sm:col-span-1 sm:col-start-2 sm:row-start-1"
         onChange={(e) => {
-          console.log(e.target.value);
+          setContent(e.target.value);
         }}
       />
       <button
         className="py-2 px-5 bg-modrateBlue 
                 text-white h-fit max-w-fit rounded 
                 active:bg-opacity-75 justify-self-end"
+        onClick={() => {
+          if (!content) return;
+          let newComment = createNewComment(uniqid(), content, currentUser);
+          sendComment(commentsClone, props.id, newComment);
+        }}
       >
         {props.btnValue}
       </button>

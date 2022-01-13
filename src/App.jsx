@@ -5,7 +5,7 @@ import UserContext from "./CurrentUserContext";
 import WriteComment from "./components/WriteComment";
 import useStickyState from "./hook/useStickyState";
 
-function App() {
+const App = () => {
   const [currentUser, setCurrentUser] = useStickyState(null, "currentUser");
   const [comments, setComments] = useStickyState(null, "comments");
   const [isDataLoaded, setIsDataLoaded] = useState(false);
@@ -44,6 +44,6 @@ function App() {
       </div>
     </UserContext.Provider>
   );
-}
+};
 
 export default App;

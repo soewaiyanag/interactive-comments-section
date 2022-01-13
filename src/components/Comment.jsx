@@ -5,7 +5,7 @@ import DeleteIcon from "./DeleteIcon";
 import Score from "./Score";
 import Status from "./Status";
 import Reply from "./Reply";
-import WriteReply from "./WriteReply";
+import WriteComment from "./WriteComment";
 import UserContext from "../CurrentUserContext";
 import { _ } from "lodash";
 
@@ -24,7 +24,7 @@ const Comment = (props) => {
 
   /*---- FUNCTIONS ----*/
 
-  function updateContent(cmts, id) {
+  const updateContent = (cmts, id) => {
     cmts.forEach((cmt) => {
       if (_.isEqual(cmt.id, id)) {
         cmt.content = content;
@@ -33,9 +33,9 @@ const Comment = (props) => {
         updateContent(cmt.replies, id);
       }
     });
-  }
+  };
 
-  function deleteComment(comments, id) {
+  const deleteComment = (comments, id) => {
     return comments
       .map((cmt) => {
         return { ...cmt };
@@ -46,7 +46,7 @@ const Comment = (props) => {
         }
         return cmt.id !== id;
       });
-  }
+  };
 
   const replyClickHandler = () => {
     setShowWriteReply(!showWriteReply);
@@ -123,12 +123,21 @@ const Comment = (props) => {
           )}
         </section>
       </section>
-      {/* <section>{isCurrentUser}</section> */}
-      <section>{showWriteReply ? <WriteReply /> : null}</section>
-      <section className="border-l-2 pl-5 sm:ml-8 sm:pl-7">
-        {props.data.replies.length ? (
-          <Reply replies={props.data.replies} />
+      <section>
+        {showWriteReply ? (
+          <WriteComment id={props.data.id} btnValue="REPLY" />
         ) : null}
+      </section>
+      <section className="border-l-2 pl-5 sm:ml-8 sm:pl-7">
+        {props.data.replies.length
+          ? props.data.replies.map((reply) => {
+              return (
+                <Comment key={reply.id} data={reply}>
+                  {reply.content}
+                </Comment>
+              );
+            })
+          : null}
       </section>
     </div>
   );
