@@ -1,7 +1,7 @@
 {
   "currentUser": {
     "image": {
-      "png": "./images/avatars/image-juliusomo.png"
+      "png": "./assets/avatars/image-juliusomo.png"
     },
     "username": "juliusomo"
   },
@@ -13,7 +13,7 @@
       "score": 12,
       "user": {
         "image": {
-          "png": "./images/avatars/image-amyrobson.png"
+          "png": "./assets/avatars/image-amyrobson.png"
         },
         "username": "amyrobson"
       },
@@ -26,7 +26,7 @@
       "score": 5,
       "user": {
         "image": {
-          "png": "./images/avatars/image-maxblagun.png"
+          "png": "./assets/avatars/image-maxblagun.png"
         },
         "username": "maxblagun"
       },
@@ -38,7 +38,7 @@
           "score": 4,
           "user": {
             "image": {
-              "png": "./images/avatars/image-ramsesmiron.png"
+              "png": "./assets/avatars/image-ramsesmiron.png"
             },
             "username": "ramsesmiron"
           },
@@ -51,7 +51,7 @@
           "score": 2,
           "user": {
             "image": {
-              "png": "./images/avatars/image-juliusomo.png"
+              "png": "./assets/avatars/image-juliusomo.png"
             },
             "username": "juliusomo"
           },
