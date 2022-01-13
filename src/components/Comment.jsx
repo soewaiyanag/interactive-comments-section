@@ -35,6 +35,19 @@ const Comment = (props) => {
     });
   }
 
+  function deleteComment(comments, id) {
+    return comments
+      .map((cmt) => {
+        return { ...cmt };
+      })
+      .filter((cmt) => {
+        if ("replies" in cmt) {
+          cmt.replies = deleteComment(cmt.replies, id);
+        }
+        return cmt.id !== id;
+      });
+  }
+
   const replyClickHandler = () => {
     setShowWriteReply(!showWriteReply);
   };
@@ -64,7 +77,11 @@ const Comment = (props) => {
         >
           {isCurrentUser ? (
             <div className="flex gap-5">
-              <DeleteIcon />
+              <DeleteIcon
+                clickHandler={() => {
+                  setComments(deleteComment(commentsClone, props.data.id));
+                }}
+              />
               <EditIcon clickHandler={editClickHandler} />
             </div>
           ) : (
