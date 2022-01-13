@@ -16,6 +16,7 @@ const WriteReply = (props) => {
       if (_.isEqual(cmt.id, id)) {
         cmt.replies.push(reply);
         setComments(commentsClone);
+        props.setShowWriteReply(false);
       } else {
         sendComment(cmt.replies, id, reply);
       }

@@ -125,7 +125,11 @@ const Comment = (props) => {
       </section>
       <section>
         {showWriteReply ? (
-          <WriteReply id={props.data.id} btnValue="REPLY" />
+          <WriteReply
+            id={props.data.id}
+            setShowWriteReply={setShowWriteReply}
+            btnValue="REPLY"
+          />
         ) : null}
       </section>
       <section className="border-l-2 pl-5 sm:ml-8 sm:pl-7">

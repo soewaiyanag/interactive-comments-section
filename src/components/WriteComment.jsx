@@ -23,6 +23,7 @@ const WriteComment = (props) => {
                     resize-none text-base border-2
                     col-span-2 row-start-1
                     sm:col-span-1 sm:col-start-2 sm:row-start-1"
+        value={content}
         onChange={(e) => {
           setContent(e.target.value);
         }}
@@ -36,6 +37,7 @@ const WriteComment = (props) => {
           let newComment = createNewComment(uniqid(), content, currentUser);
           commentsClone.push(newComment);
           setComments(commentsClone);
+          setContent("");
         }}
       >
         {props.btnValue}
