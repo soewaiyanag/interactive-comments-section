@@ -24,10 +24,10 @@ const WriteComment = (props) => {
   const sendComment = (cmts, id, reply) => {
     cmts.forEach((cmt) => {
       if (_.isEqual(cmt.id, id)) {
-        cmt.replies.push(reply);
+        cmt.replies = [...cmt.replies, reply];
         setComments(commentsClone);
       } else {
-        sendComment(cmt.replies, id);
+        sendComment(cmt.replies, id, reply);
       }
     });
   };
