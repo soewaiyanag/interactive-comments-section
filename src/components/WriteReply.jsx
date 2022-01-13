@@ -4,12 +4,23 @@ import uniqid from "uniqid";
 import { _ } from "lodash";
 import createNewComment from "../createNewComment";
 
-const WriteComment = (props) => {
+const WriteReply = (props) => {
   const [content, setContent] = useState("");
   const { comments, setComments, currentUser } = useContext(UserContext);
 
   // clone the comments(array of objs) so that it won't affect comments[state]
   const commentsClone = comments.map((cmt) => Object.assign({}, cmt));
+
+  const sendComment = (cmts, id, reply) => {
+    cmts.forEach((cmt) => {
+      if (_.isEqual(cmt.id, id)) {
+        cmt.replies.push(reply);
+        setComments(commentsClone);
+      } else {
+        sendComment(cmt.replies, id, reply);
+      }
+    });
+  };
 
   return (
     <div
@@ -34,8 +45,7 @@ const WriteComment = (props) => {
         onClick={() => {
           if (!content) return;
           let newComment = createNewComment(uniqid(), content, currentUser);
-          commentsClone.push(newComment);
-          setComments(commentsClone);
+          sendComment(commentsClone, props.id, newComment);
         }}
       >
         {props.btnValue}
@@ -44,4 +54,4 @@ const WriteComment = (props) => {
   );
 };
 
-export default WriteComment;
+export default WriteReply;

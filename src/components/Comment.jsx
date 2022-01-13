@@ -5,12 +5,13 @@ import DeleteIcon from "./DeleteIcon";
 import Score from "./Score";
 import Status from "./Status";
 import WriteComment from "./WriteComment";
+import WriteReply from "./WriteReply";
 import UserContext from "../CurrentUserContext";
 import { _ } from "lodash";
 
 const Comment = (props) => {
   /*---- STATES ----*/
-  const [showWriteComment, setShowWriteComment] = useState(false);
+  const [showWriteReply, setShowWriteReply] = useState(false);
   const [isEditable, setIsEditable] = useState(false);
   const [content, setContent] = useState(props.children);
 
@@ -48,7 +49,7 @@ const Comment = (props) => {
   };
 
   const replyClickHandler = () => {
-    setShowWriteComment(!showWriteComment);
+    setShowWriteReply(!showWriteReply);
   };
 
   const editClickHandler = () => {
@@ -123,8 +124,8 @@ const Comment = (props) => {
         </section>
       </section>
       <section>
-        {showWriteComment ? (
-          <WriteComment id={props.data.id} btnValue="REPLY" />
+        {showWriteReply ? (
+          <WriteReply id={props.data.id} btnValue="REPLY" />
         ) : null}
       </section>
       <section className="border-l-2 pl-5 sm:ml-8 sm:pl-7">
