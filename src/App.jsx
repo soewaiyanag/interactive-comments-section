@@ -28,7 +28,7 @@ const App = () => {
 
   return (
     <UserContext.Provider value={{ comments, setComments, currentUser }}>
-      <div className="min-h-screen max-w-3xl mx-auto">
+      <div className="min-h-screen max-w-[44rem] my-10 mx-auto">
         {isDataLoaded
           ? comments.map((comment) => {
               return (

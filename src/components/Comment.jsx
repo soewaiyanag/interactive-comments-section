@@ -144,7 +144,7 @@ const Comment = (props) => {
           />
         ) : null}
       </section>
-      <section className="border-l-2 pl-5 md:ml-8 md:pl-7">
+      <section className="border-l-2 pl-5 md:ml-8 md:pl-8">
         {props.data.replies.length
           ? props.data.replies.map((reply) => {
               return (
