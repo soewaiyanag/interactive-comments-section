@@ -70,7 +70,7 @@ const Comment = (props) => {
           }}
         />
       ) : null}
-      <section
+      <div
         className="
       p-4 my-4 bg-white rounded-md shadow-sm
       gap-y-6 grid grid-cols-[auto_auto] 
@@ -82,7 +82,7 @@ const Comment = (props) => {
           username={props.data.user.username}
           createdAt={props.data.createdAt}
         />
-        <section
+        <div
           className="cursor-pointer ml-auto
                       col-start-2 row-start-3 self-center
                       md:row-start-1"
@@ -99,8 +99,8 @@ const Comment = (props) => {
           ) : (
             <ReplyIcon clickHandler={replyClickHandler} />
           )}
-        </section>
-        <section
+        </div>
+        <div
           className="
             text-grayishBlue text-base font-normal
             col-span-2 md:col-span-2 md:col-start-2
@@ -133,9 +133,9 @@ const Comment = (props) => {
           ) : (
             <p>{content}</p>
           )}
-        </section>
-      </section>
-      <section>
+        </div>
+      </div>
+      <div>
         {showWriteReply ? (
           <WriteReply
             id={props.data.id}
@@ -143,8 +143,8 @@ const Comment = (props) => {
             btnValue="REPLY"
           />
         ) : null}
-      </section>
-      <section className="border-l-2 pl-5 md:ml-8 md:pl-8">
+      </div>
+      <div className="border-l-2 pl-5 md:ml-8 md:pl-8">
         {props.data.replies.length
           ? props.data.replies.map((reply) => {
               return (
@@ -154,7 +154,7 @@ const Comment = (props) => {
               );
             })
           : null}
-      </section>
+      </div>
     </div>
   );
 };

@@ -28,6 +28,7 @@ const WriteReply = (props) => {
       <img className="h-10" src={currentUser.image.png} alt="avator" />
       <textarea
         className="WriteBox__textarea"
+        placeholder="Add a comment..."
         onChange={(e) => {
           setContent(e.target.value);
         }}

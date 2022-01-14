@@ -2,7 +2,7 @@ import React from "react";
 
 const DeleteModel = (props) => {
   return (
-    <section
+    <div
       className="fixed inset-0 h-full bg-black bg-opacity-10
                          grid place-items-center animate-fade-in-up"
     >
@@ -34,7 +34,7 @@ const DeleteModel = (props) => {
           </button>
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 
