@@ -5,6 +5,7 @@ import DeleteIcon from "./DeleteIcon";
 import Score from "./Score";
 import Status from "./Status";
 import WriteReply from "./WriteReply";
+import DeleteModel from "./DeleteModel";
 import UserContext from "../CurrentUserContext";
 import { _ } from "lodash";
 
@@ -12,6 +13,7 @@ const Comment = (props) => {
   /*---- STATES ----*/
 
   const [showWriteReply, setShowWriteReply] = useState(false);
+  const [showDeleteModel, setShowDeleteModel] = useState(false);
   const [isEditable, setIsEditable] = useState(false);
   const [content, setContent] = useState(props.children);
 
@@ -58,6 +60,16 @@ const Comment = (props) => {
 
   return (
     <div>
+      {showDeleteModel ? (
+        <DeleteModel
+          deleteHandler={() => {
+            setComments(deleteComment(commentsClone, props.data.id));
+          }}
+          cancelHandler={() => {
+            setShowDeleteModel(false);
+          }}
+        />
+      ) : null}
       <section
         className="
       p-4 my-4 bg-white rounded-md shadow-sm
@@ -79,7 +91,7 @@ const Comment = (props) => {
             <div className="flex gap-5">
               <DeleteIcon
                 clickHandler={() => {
-                  setComments(deleteComment(commentsClone, props.data.id));
+                  setShowDeleteModel(true);
                 }}
               />
               <EditIcon clickHandler={editClickHandler} />
