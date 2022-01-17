@@ -101,7 +101,9 @@ const Score = (props) => {
           md:row-span-3 "
     >
       <Plus checked={isUpVoted} clickHandler={upVoteHandler} />
-      <span className="text-modrateBlue text-lg font-medium">{score}</span>
+      <span className="text-modrateBlue text-lg font-medium" role="none">
+        {score}
+      </span>
       <Minus checked={isDownVoted} clickHandler={downVoteHandler} />
     </div>
   );

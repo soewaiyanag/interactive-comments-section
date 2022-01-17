@@ -18,7 +18,7 @@ const App = () => {
         const currentUserData = JSON.parse(localStorage.getItem("currentUser"));
         const commentsData = JSON.parse(localStorage.getItem("comments"));
 
-        if (currentUserData === null || commentsData === null) {
+        if (currentUserData === null && commentsData === null) {
           setCurrentUser(value.currentUser);
           setComments(value.comments);
         }

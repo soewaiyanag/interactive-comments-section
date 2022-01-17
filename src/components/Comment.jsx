@@ -86,6 +86,7 @@ const Comment = (props) => {
           className="cursor-pointer ml-auto
                       col-start-2 row-start-3 self-center
                       md:row-start-1"
+          role="figure"
         >
           {isCurrentUser ? (
             <div className="flex gap-5">
@@ -105,6 +106,7 @@ const Comment = (props) => {
             text-grayishBlue text-base font-normal
             col-span-2 md:col-span-2 md:col-start-2
             md:row-span-2"
+          role="textbox"
         >
           {isEditable ? (
             <div className="flex flex-col gap-4">

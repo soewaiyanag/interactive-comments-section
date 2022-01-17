@@ -11,6 +11,7 @@ const Status = (props) => {
       flex flex-wrap gap-4 items-center
       col-span-2 md:col-start-2 md:row-start-1
     "
+      role="status"
     >
       <img className="h-8" src={props.avatar} alt="profile picture" />
       <h1
