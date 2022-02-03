@@ -8,6 +8,7 @@ import WriteReply from "./WriteReply";
 import DeleteModel from "./DeleteModel";
 import UserContext from "../CurrentUserContext";
 import { _ } from "lodash";
+import store from "../store";
 
 const Comment = (props) => {
   /*---- STATES ----*/
@@ -19,7 +20,7 @@ const Comment = (props) => {
 
   /*---- VARIABLES ----*/
 
-  const { comments, setComments, currentUser } = useContext(UserContext);
+  const { comments, currentUser } = store.getState();
   const isCurrentUser = currentUser.username === props.data.user.username;
   // clone the comments(array of objs) so that it won't affect comments[state]
   const commentsClone = comments.map((cmt) => Object.assign({}, cmt));
@@ -146,7 +147,7 @@ const Comment = (props) => {
           />
         ) : null}
       </div>
-      <div className="border-l-2 pl-5 md:ml-8 md:pl-8">
+      {/* <div className="border-l-2 pl-5 md:ml-8 md:pl-8">
         {props.data.replies.length
           ? props.data.replies.map((reply) => {
               return (
@@ -156,7 +157,7 @@ const Comment = (props) => {
               );
             })
           : null}
-      </div>
+      </div> */}
     </div>
   );
 };

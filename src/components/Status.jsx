@@ -1,8 +1,9 @@
 import React, { useContext } from "react";
 import UserContext from "../CurrentUserContext";
+import store from "../store";
 
 const Status = (props) => {
-  const { currentUser } = useContext(UserContext);
+  const { currentUser } = store.getState();
   const isCurrentUser = currentUser.username === props.username;
 
   return (

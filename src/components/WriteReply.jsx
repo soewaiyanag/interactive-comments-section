@@ -3,10 +3,11 @@ import UserContext from "../CurrentUserContext";
 import uniqid from "uniqid";
 import { _ } from "lodash";
 import createNewComment from "../createNewComment";
+import store from "../store";
 
 const WriteReply = (props) => {
   const [content, setContent] = useState("");
-  const { comments, setComments, currentUser } = useContext(UserContext);
+  const { comments, currentUser } = store.getState();
 
   // clone the comments(array of objs) so that it won't affect comments[state]
   const commentsClone = comments.map((cmt) => Object.assign({}, cmt));
