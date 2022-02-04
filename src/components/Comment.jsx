@@ -130,11 +130,7 @@ const Comment = ({ comment, children }) => {
       </div>
       <div>
         {showWriteReply ? (
-          <WriteReply
-            id={comment.id}
-            setShowWriteReply={setShowWriteReply}
-            btnValue="REPLY"
-          />
+          <WriteReply id={comment.id} setShowWriteReply={setShowWriteReply} />
         ) : null}
       </div>
       <div className="border-l-2 pl-5 md:ml-8 md:pl-8">

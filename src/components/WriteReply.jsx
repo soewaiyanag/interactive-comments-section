@@ -1,28 +1,11 @@
 import React, { useState, useContext } from "react";
-import UserContext from "../CurrentUserContext";
-import uniqid from "uniqid";
 import { _ } from "lodash";
-import createNewComment from "../createNewComment";
 import store from "../store";
+import { sendReply } from "../actions";
 
-const WriteReply = (props) => {
+const WriteReply = ({ id, setShowWriteReply }) => {
   const [content, setContent] = useState("");
   const { comments, currentUser } = store.getState();
-
-  // clone the comments(array of objs) so that it won't affect comments[state]
-  const commentsClone = comments.map((cmt) => Object.assign({}, cmt));
-
-  const sendComment = (cmts, id, reply) => {
-    cmts.forEach((cmt) => {
-      if (_.isEqual(cmt.id, id)) {
-        cmt.replies.push(reply);
-        setComments(commentsClone);
-        props.setShowWriteReply(false);
-      } else {
-        sendComment(cmt.replies, id, reply);
-      }
-    });
-  };
 
   return (
     <div className="WriteBox">
@@ -33,16 +16,17 @@ const WriteReply = (props) => {
         onChange={(e) => {
           setContent(e.target.value);
         }}
+        value={content}
       />
       <button
         className="WriteBox__btn"
         onClick={() => {
           if (!content) return;
-          let newComment = createNewComment(uniqid(), content, currentUser);
-          sendComment(commentsClone, props.id, newComment);
+          store.dispatch(sendReply(id, currentUser, content));
+          setShowWriteReply(false);
         }}
       >
-        {props.btnValue}
+        REPLY
       </button>
     </div>
   );

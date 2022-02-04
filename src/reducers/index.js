@@ -48,6 +48,7 @@ const initialState = {
             },
             username: "ramsesmiron",
           },
+          replies: [],
         },
         {
           id: 4,
@@ -62,6 +63,7 @@ const initialState = {
             },
             username: "juliusomo",
           },
+          replies: [],
         },
       ],
     },
@@ -83,6 +85,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         comments: state.comments.map((cmt) => {
+          // if the comment is the one being updated
           if (cmt.id === action.id) {
             return {
               ...cmt,
@@ -92,11 +95,48 @@ const reducer = (state = initialState, action) => {
           if ("replies" in cmt) {
             return {
               ...cmt,
+              // if the reply is being updated
               replies: cmt.replies.map((reply) => {
                 if (reply.id === action.id) {
                   return {
                     ...reply,
                     content: action.content,
+                  };
+                }
+                return reply;
+              }),
+            };
+          }
+          // if the comment is not being updated then return the comment
+          return cmt;
+        }),
+      };
+
+    case "SEND_REPLY":
+      return {
+        ...state,
+        // update the comment if doesn't exist find the another comment in reply and update
+        comments: state.comments.map((cmt) => {
+          if (cmt.id === action.id) {
+            return {
+              ...cmt,
+              replies: [
+                ...cmt.replies,
+                createNewComment(action.user, action.content),
+              ],
+            };
+          }
+          if ("replies" in cmt) {
+            return {
+              ...cmt,
+              replies: cmt.replies.map((reply) => {
+                if (reply.id === action.id) {
+                  return {
+                    ...reply,
+                    replies: [
+                      ...reply.replies,
+                      createNewComment(action.user, action.content),
+                    ],
                   };
                 }
                 return reply;
