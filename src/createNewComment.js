@@ -1,8 +1,10 @@
-const createNewComment = (id, content, user) => {
+import uniqid from "uniqid";
+
+const createNewComment = (user, content) => {
   return {
-    id,
     content,
     user,
+    id: uniqid(),
     createdAt: "0 second ago",
     replies: [],
     score: 0,

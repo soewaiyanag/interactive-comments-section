@@ -1,3 +1,5 @@
+import createNewComment from "../createNewComment";
+
 const initialState = {
   currentUser: {
     image: {
@@ -68,8 +70,14 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case "UPDATE":
-      break;
+    case "SEND_COMMENT":
+      return {
+        ...state,
+        comments: [
+          ...state.comments,
+          createNewComment(action.user, action.content),
+        ],
+      };
 
     default:
       return state;

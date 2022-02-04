@@ -147,8 +147,8 @@ const Comment = (props) => {
           />
         ) : null}
       </div>
-      {/* <div className="border-l-2 pl-5 md:ml-8 md:pl-8">
-        {props.data.replies.length
+      <div className="border-l-2 pl-5 md:ml-8 md:pl-8">
+        {props.data?.replies
           ? props.data.replies.map((reply) => {
               return (
                 <Comment key={reply.id} data={reply}>
@@ -157,7 +157,7 @@ const Comment = (props) => {
               );
             })
           : null}
-      </div> */}
+      </div>
     </div>
   );
 };

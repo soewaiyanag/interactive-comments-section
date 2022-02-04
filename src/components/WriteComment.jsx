@@ -1,9 +1,8 @@
-import React, { useState, useContext } from "react";
-import UserContext from "../CurrentUserContext";
-import uniqid from "uniqid";
+import React, { useState } from "react";
 import { _ } from "lodash";
 import createNewComment from "../createNewComment";
 import store from "../store";
+import { sendComment } from "../actions";
 
 const WriteComment = (props) => {
   const [content, setContent] = useState("");
@@ -27,9 +26,7 @@ const WriteComment = (props) => {
         className="WriteBox__btn"
         onClick={() => {
           if (!content) return;
-          let newComment = createNewComment(uniqid(), content, currentUser);
-          commentsClone.push(newComment);
-          setComments(commentsClone);
+          store.dispatch(sendComment(currentUser, content));
           setContent("");
         }}
       >
