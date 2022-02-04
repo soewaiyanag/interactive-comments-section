@@ -13,7 +13,7 @@ const App = () => {
     <div className="min-h-screen max-w-[44rem] my-10 mx-auto">
       {comments.map((comment) => {
         return (
-          <Comment key={comment.id} data={comment}>
+          <Comment key={comment.id} comment={comment}>
             {comment.content}
           </Comment>
         );

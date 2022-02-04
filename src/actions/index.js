@@ -5,3 +5,11 @@ export const sendComment = (user, content) => {
     content,
   };
 };
+
+export const updateComment = (id, content) => {
+  return {
+    type: "UPDATE_COMMENT",
+    id,
+    content,
+  };
+};

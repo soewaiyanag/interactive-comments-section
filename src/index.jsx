@@ -12,8 +12,8 @@ const render = () =>
     document.getElementById("root")
   );
 
-console.log(store.getState());
 store.subscribe(() => {
+  console.log(store.getState());
   render();
 });
 render();

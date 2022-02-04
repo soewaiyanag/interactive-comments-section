@@ -9,34 +9,24 @@ import DeleteModel from "./DeleteModel";
 import UserContext from "../CurrentUserContext";
 import { _ } from "lodash";
 import store from "../store";
+import { updateComment } from "../actions";
 
-const Comment = (props) => {
+const Comment = ({ comment, children }) => {
   /*---- STATES ----*/
 
   const [showWriteReply, setShowWriteReply] = useState(false);
   const [showDeleteModel, setShowDeleteModel] = useState(false);
   const [isEditable, setIsEditable] = useState(false);
-  const [content, setContent] = useState(props.children);
+  const [content, setContent] = useState(children);
 
   /*---- VARIABLES ----*/
 
   const { comments, currentUser } = store.getState();
-  const isCurrentUser = currentUser.username === props.data.user.username;
+  const isCurrentUser = currentUser.username === comment.user.username;
   // clone the comments(array of objs) so that it won't affect comments[state]
   const commentsClone = comments.map((cmt) => Object.assign({}, cmt));
 
   /*---- FUNCTIONS ----*/
-
-  const updateContent = (cmts, id) => {
-    cmts.forEach((cmt) => {
-      if (_.isEqual(cmt.id, id)) {
-        cmt.content = content;
-        setComments(commentsClone);
-      } else {
-        updateContent(cmt.replies, id);
-      }
-    });
-  };
 
   const deleteComment = (comments, id) => {
     return comments
@@ -64,7 +54,7 @@ const Comment = (props) => {
       {showDeleteModel ? (
         <DeleteModel
           deleteHandler={() => {
-            setComments(deleteComment(commentsClone, props.data.id));
+            setComments(deleteComment(commentsClone, comment.id));
           }}
           cancelHandler={() => {
             setShowDeleteModel(false);
@@ -77,11 +67,11 @@ const Comment = (props) => {
       gap-y-6 grid grid-cols-[auto_auto] 
       md:grid-cols-[auto_1fr_auto] md:gap-x-6"
       >
-        <Score score={props.data.score} />
+        <Score score={comment.score} />
         <Status
-          avatar={props.data.user.image.png}
-          username={props.data.user.username}
-          createdAt={props.data.createdAt}
+          avatar={comment.user.image.png}
+          username={comment.user.username}
+          createdAt={comment.createdAt}
         />
         <div
           className="cursor-pointer ml-auto
@@ -126,7 +116,7 @@ const Comment = (props) => {
                 text-white h-fit max-w-fit rounded 
                 active:bg-opacity-75 self-end"
                 onClick={() => {
-                  updateContent(commentsClone, props.data.id);
+                  store.dispatch(updateComment(comment.id, content));
                   setIsEditable(false);
                 }}
               >
@@ -141,17 +131,17 @@ const Comment = (props) => {
       <div>
         {showWriteReply ? (
           <WriteReply
-            id={props.data.id}
+            id={comment.id}
             setShowWriteReply={setShowWriteReply}
             btnValue="REPLY"
           />
         ) : null}
       </div>
       <div className="border-l-2 pl-5 md:ml-8 md:pl-8">
-        {props.data?.replies
-          ? props.data.replies.map((reply) => {
+        {comment?.replies
+          ? comment.replies.map((reply) => {
               return (
-                <Comment key={reply.id} data={reply}>
+                <Comment key={reply.id} comment={reply}>
                   {reply.content}
                 </Comment>
               );

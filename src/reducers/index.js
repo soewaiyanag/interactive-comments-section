@@ -79,6 +79,34 @@ const reducer = (state = initialState, action) => {
         ],
       };
 
+    case "UPDATE_COMMENT":
+      return {
+        ...state,
+        comments: state.comments.map((cmt) => {
+          if (cmt.id === action.id) {
+            return {
+              ...cmt,
+              content: action.content,
+            };
+          }
+          if ("replies" in cmt) {
+            return {
+              ...cmt,
+              replies: cmt.replies.map((reply) => {
+                if (reply.id === action.id) {
+                  return {
+                    ...reply,
+                    content: action.content,
+                  };
+                }
+                return reply;
+              }),
+            };
+          }
+          return cmt;
+        }),
+      };
+
     default:
       return state;
   }
