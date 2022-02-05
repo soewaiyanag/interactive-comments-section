@@ -1,4 +1,17 @@
-import newComment from "../newComment";
+import { ReplyObj } from "../classes";
+
+/* SIMPLE FUNCTIONS */
+
+// a function find user name by id in deep nested array of objects using recursion
+function findUserNameById(comments, id) {
+  for (let i = 0; i < comments.length; i++) {
+    if (comments[i].id === id) {
+      return comments[i].user.username;
+    } else if (comments[i].replies.length > 0) {
+      return findUserNameById(comments[i].replies, id);
+    }
+  }
+}
 
 /* FOR REDUCER */
 export const removeFromComments = (comments, id) => {
@@ -31,7 +44,10 @@ export const editComment = (comments, id, content) => {
 export const sendReply = (comments, id, user, content) => {
   return comments.map((comment) => {
     if (comment.id === id) {
-      comment.replies = [...comment.replies, newComment(user, content)];
+      comment.replies = [
+        ...comment.replies,
+        new ReplyObj(user, content, findUserNameById(comments, id)),
+      ];
     }
     if ("replies" in comment) {
       comment.replies = sendReply(comment.replies, id, user, content);
@@ -39,5 +55,3 @@ export const sendReply = (comments, id, user, content) => {
     return comment;
   });
 };
-
-/* SIMPLE FUNCTIONS */

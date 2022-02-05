@@ -1,4 +1,4 @@
-import newComment from "../newComment";
+import { CommentObj } from "../classes";
 import { removeFromComments, editComment, sendReply } from "../function";
 import initialState from "../initialState";
 
@@ -7,7 +7,10 @@ const reducer = (state = initialState, action) => {
     case "SEND_COMMENT":
       return {
         ...state,
-        comments: [...state.comments, newComment(action.user, action.content)],
+        comments: [
+          ...state.comments,
+          new CommentObj(action.user, action.content),
+        ],
       };
 
     case "UPDATE_COMMENT":
