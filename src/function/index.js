@@ -1,3 +1,5 @@
+import newComment from "../newComment";
+
 //   search nested array of objects by id using recursion and if found remove it
 export const removeFromComments = (comments, id) => {
   return comments.filter((comment) => {
@@ -20,6 +22,19 @@ export const editComment = (comments, id, content) => {
     }
     if ("replies" in comment) {
       comment.replies = editComment(comment.replies, id, content);
+    }
+    return comment;
+  });
+};
+
+// send a new reply by id and content
+export const sendReply = (comments, id, user, content) => {
+  return comments.map((comment) => {
+    if (comment.id === id) {
+      comment.replies = [...comment.replies, newComment(user, content)];
+    }
+    if ("replies" in comment) {
+      comment.replies = sendReply(comment.replies, id, user, content);
     }
     return comment;
   });

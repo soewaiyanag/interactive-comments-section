@@ -1,5 +1,5 @@
 import newComment from "../newComment";
-import { removeFromComments, editComment } from "../function";
+import { removeFromComments, editComment, sendReply } from "../function";
 import initialState from "../initialState";
 
 const reducer = (state = initialState, action) => {
@@ -19,36 +19,12 @@ const reducer = (state = initialState, action) => {
     case "SEND_REPLY":
       return {
         ...state,
-        // update the comment if doesn't exist find the another comment in reply and update
-        comments: state.comments.map((cmt) => {
-          if (cmt.id === action.id) {
-            return {
-              ...cmt,
-              replies: [
-                ...cmt.replies,
-                newComment(action.user, action.content),
-              ],
-            };
-          }
-          if ("replies" in cmt) {
-            return {
-              ...cmt,
-              replies: cmt.replies.map((reply) => {
-                if (reply.id === action.id) {
-                  return {
-                    ...reply,
-                    replies: [
-                      ...reply.replies,
-                      newComment(action.user, action.content),
-                    ],
-                  };
-                }
-                return reply;
-              }),
-            };
-          }
-          return cmt;
-        }),
+        comments: sendReply(
+          state.comments,
+          action.id,
+          action.user,
+          action.content
+        ),
       };
 
     case "DELETE_COMMENT":
