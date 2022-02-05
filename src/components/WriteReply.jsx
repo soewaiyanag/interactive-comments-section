@@ -1,11 +1,11 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { _ } from "lodash";
 import store from "../store";
 import { sendReply } from "../actions";
 
 const WriteReply = ({ id, setShowWriteReply }) => {
   const [content, setContent] = useState("");
-  const { comments, currentUser } = store.getState();
+  const { currentUser } = store.getState();
 
   return (
     <div className="WriteBox">

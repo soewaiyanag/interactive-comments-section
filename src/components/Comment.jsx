@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import ReplyIcon from "./ReplyIcon";
 import EditIcon from "./EditIcon";
 import DeleteIcon from "./DeleteIcon";
@@ -6,10 +6,9 @@ import Score from "./Score";
 import Status from "./Status";
 import WriteReply from "./WriteReply";
 import DeleteModel from "./DeleteModel";
-import UserContext from "../CurrentUserContext";
 import { _ } from "lodash";
 import store from "../store";
-import { updateComment } from "../actions";
+import { updateComment, deleteComment } from "../actions";
 
 const Comment = ({ comment, children }) => {
   /*---- STATES ----*/
@@ -18,43 +17,29 @@ const Comment = ({ comment, children }) => {
   const [showDeleteModel, setShowDeleteModel] = useState(false);
   const [isEditable, setIsEditable] = useState(false);
   const [content, setContent] = useState(children);
+  const { currentUser } = store.getState();
 
   /*---- VARIABLES ----*/
 
-  const { comments, currentUser } = store.getState();
   const isCurrentUser = currentUser.username === comment.user.username;
-  // clone the comments(array of objs) so that it won't affect comments[state]
-  const commentsClone = comments.map((cmt) => Object.assign({}, cmt));
 
-  /*---- FUNCTIONS ----*/
+  /*---- EVENT HANDLERS ----*/
 
-  const deleteComment = (comments, id) => {
-    return comments
-      .map((cmt) => {
-        return { ...cmt };
-      })
-      .filter((cmt) => {
-        if ("replies" in cmt) {
-          cmt.replies = deleteComment(cmt.replies, id);
-        }
-        return cmt.id !== id;
-      });
-  };
-
-  const replyClickHandler = () => {
+  function replyClickHandler() {
     setShowWriteReply(!showWriteReply);
-  };
+  }
 
-  const editClickHandler = () => {
+  function editClickHandler() {
     setIsEditable(!isEditable);
-  };
+  }
 
   return (
     <div>
       {showDeleteModel ? (
         <DeleteModel
           deleteHandler={() => {
-            setComments(deleteComment(commentsClone, comment.id));
+            store.dispatch(deleteComment(comment.id));
+            setShowDeleteModel(false);
           }}
           cancelHandler={() => {
             setShowDeleteModel(false);

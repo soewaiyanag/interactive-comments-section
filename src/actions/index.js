@@ -22,3 +22,10 @@ export const updateComment = (id, content) => {
     content,
   };
 };
+
+export const deleteComment = (id) => {
+  return {
+    type: "DELETE_COMMENT",
+    id,
+  };
+};

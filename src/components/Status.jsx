@@ -1,5 +1,4 @@
-import React, { useContext } from "react";
-import UserContext from "../CurrentUserContext";
+import React from "react";
 import store from "../store";
 
 const Status = (props) => {

@@ -1,4 +1,5 @@
-import createNewComment from "../createNewComment";
+import newComment from "../newComment";
+import { removeFromComments } from "../function";
 
 const initialState = {
   currentUser: {
@@ -75,10 +76,7 @@ const reducer = (state = initialState, action) => {
     case "SEND_COMMENT":
       return {
         ...state,
-        comments: [
-          ...state.comments,
-          createNewComment(action.user, action.content),
-        ],
+        comments: [...state.comments, newComment(action.user, action.content)],
       };
 
     case "UPDATE_COMMENT":
@@ -122,7 +120,7 @@ const reducer = (state = initialState, action) => {
               ...cmt,
               replies: [
                 ...cmt.replies,
-                createNewComment(action.user, action.content),
+                newComment(action.user, action.content),
               ],
             };
           }
@@ -135,7 +133,7 @@ const reducer = (state = initialState, action) => {
                     ...reply,
                     replies: [
                       ...reply.replies,
-                      createNewComment(action.user, action.content),
+                      newComment(action.user, action.content),
                     ],
                   };
                 }
@@ -145,6 +143,12 @@ const reducer = (state = initialState, action) => {
           }
           return cmt;
         }),
+      };
+
+    case "DELETE_COMMENT":
+      return {
+        ...state,
+        comments: removeFromComments(state.comments, action.id),
       };
 
     default:

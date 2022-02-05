@@ -1,6 +1,6 @@
 import uniqid from "uniqid";
 
-const createNewComment = (user, content) => {
+const newComment = (user, content) => {
   return {
     content,
     user,
@@ -11,4 +11,4 @@ const createNewComment = (user, content) => {
   };
 };
 
-export default createNewComment;
+export default newComment;

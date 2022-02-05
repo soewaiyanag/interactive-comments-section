@@ -1,6 +1,6 @@
 import React from "react";
 
-const DeleteModel = (props) => {
+const DeleteModel = ({ cancelHandler, deleteHandler }) => {
   return (
     <div
       className="fixed inset-0 h-full bg-black bg-opacity-10
@@ -20,7 +20,7 @@ const DeleteModel = (props) => {
             className="
                 px-5 py-2 rounded-md active:opacity-80 w-1/2
                 uppercase bg-grayishBlue text-white font-medium"
-            onClick={props.cancelHandler}
+            onClick={cancelHandler}
           >
             no, cancel
           </button>
@@ -28,7 +28,7 @@ const DeleteModel = (props) => {
             className="
                 px-5 py-2 rounded-md active:opacity-80 w-1/2
                 uppercase bg-softRed text-white font-medium"
-            onClick={props.deleteHandler}
+            onClick={deleteHandler}
           >
             yes, delete
           </button>

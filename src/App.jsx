@@ -1,13 +1,9 @@
-import { useState, useEffect } from "react";
-import uniqid from "uniqid";
 import Comment from "./components/Comment";
-import UserContext from "./CurrentUserContext";
 import WriteComment from "./components/WriteComment";
-import useStickyState from "./hook/useStickyState";
 import store from "./store";
 
 const App = () => {
-  const { currentUser, comments } = store.getState();
+  const { comments } = store.getState();
 
   return (
     <div className="min-h-screen max-w-[44rem] my-10 mx-auto">
