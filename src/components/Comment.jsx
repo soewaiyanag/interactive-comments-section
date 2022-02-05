@@ -6,6 +6,7 @@ import Score from "./Score";
 import Status from "./Status";
 import WriteReply from "./WriteReply";
 import DeleteModel from "./DeleteModel";
+import Mention from "./Mention";
 import { _ } from "lodash";
 import store from "../store";
 import { updateComment, deleteComment } from "../actions";
@@ -109,7 +110,12 @@ const Comment = ({ comment, children }) => {
               </button>
             </div>
           ) : (
-            <p>{content}</p>
+            <p>
+              {!!comment.replyingTo ? (
+                <Mention user={comment.replyingTo + " "} />
+              ) : null}
+              {content}
+            </p>
           )}
         </div>
       </div>

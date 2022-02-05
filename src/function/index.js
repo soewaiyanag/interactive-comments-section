@@ -1,6 +1,6 @@
 import newComment from "../newComment";
 
-//   search nested array of objects by id using recursion and if found remove it
+/* FOR REDUCER */
 export const removeFromComments = (comments, id) => {
   return comments.filter((comment) => {
     if (comment.id === id) {
@@ -39,3 +39,5 @@ export const sendReply = (comments, id, user, content) => {
     return comment;
   });
 };
+
+/* SIMPLE FUNCTIONS */
