@@ -1,7 +1,10 @@
+import juliusomo from "../images/avatars/image-juliusomo.png";
+import amyrobson from "../images/avatars/image-amyrobson.png";
+import maxblagun from "../images/avatars/image-maxblagun.png";
+import ramsesmiron from "../images/avatars/image-ramsesmiron.png";
+
 const currentUser = {
-  image: {
-    png: "./images/avatars/image-juliusomo.png",
-  },
+  image: juliusomo,
   username: "juliusomo",
 };
 
@@ -13,9 +16,7 @@ const comments = [
     createdAt: "1 month ago",
     score: 12,
     user: {
-      image: {
-        png: "./images/avatars/image-amyrobson.png",
-      },
+      image: amyrobson,
       username: "amyrobson",
     },
     replies: [],
@@ -27,9 +28,7 @@ const comments = [
     createdAt: "2 weeks ago",
     score: 5,
     user: {
-      image: {
-        png: "./images/avatars/image-maxblagun.png",
-      },
+      image: maxblagun,
       username: "maxblagun",
     },
     replies: [
@@ -41,9 +40,7 @@ const comments = [
         score: 4,
         replyingTo: "maxblagun",
         user: {
-          image: {
-            png: "./images/avatars/image-ramsesmiron.png",
-          },
+          image: ramsesmiron,
           username: "ramsesmiron",
         },
         replies: [],
@@ -56,9 +53,7 @@ const comments = [
         score: 2,
         replyingTo: "ramsesmiron",
         user: {
-          image: {
-            png: "./images/avatars/image-juliusomo.png",
-          },
+          image: juliusomo,
           username: "juliusomo",
         },
         replies: [],

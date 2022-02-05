@@ -55,7 +55,7 @@ const Comment = ({ comment, children }) => {
       >
         <Score score={comment.score} />
         <Status
-          avatar={comment.user.image.png}
+          avatar={comment.user.image}
           username={comment.user.username}
           createdAt={comment.createdAt}
         />

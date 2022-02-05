@@ -9,7 +9,7 @@ const WriteComment = (props) => {
 
   return (
     <div className="WriteBox">
-      <img className="h-10" src={currentUser.image.png} alt="avator" />
+      <img className="h-10" src={currentUser.image} alt="avator" />
       <textarea
         className="WriteBox__textarea"
         placeholder="Add a comment..."
