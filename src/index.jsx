@@ -13,7 +13,8 @@ const render = () =>
   );
 
 store.subscribe(() => {
-  console.log(store.getState());
+  const { comments } = store.getState();
+  localStorage.setItem("comments", JSON.stringify(comments));
   render();
 });
 render();

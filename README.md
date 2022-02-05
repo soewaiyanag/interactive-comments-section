@@ -8,8 +8,9 @@ Currently I'm using localStorage to save data. But in the future I gonna add bac
 
 ## What I gained from this challenge
 
-- How to work with nested objects (adding || deleting || updating)
-- How to work with Context API in React
+- How to work with nested objects (CRUD)
+- How to work with Redux
+- How to work with Context API (in previous version, currently built with Redux)
 - How to build own Hooks in React
 - More familiar with React && TailwindCSS
 
