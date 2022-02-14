@@ -50,7 +50,7 @@ const Comment = ({ comment, children }) => {
       <div
         className="
       p-4 my-4 bg-white rounded-md shadow-sm
-      gap-y-6 grid grid-cols-[auto_auto] 
+      gap-y-4 grid grid-cols-[auto_auto] 
       md:grid-cols-[auto_1fr_auto] md:gap-x-6"
       >
         <Score score={comment.score} />
