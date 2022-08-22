@@ -16,4 +16,4 @@ Currently I'm using localStorage to save data. But in the future I gonna add bac
 
 ## preview link
 
-[link to preview website](https://nostalgic-varahamihira-a7d803.netlify.app//)
+[link to preview website](https://comment-section-soewaiyanag.netlify.app/)
