@@ -16,10 +16,6 @@ This project is a challenge from [Frontend Mentor](https://frontendmentor.io). I
 
 [Interactive Comments Section Preview](https://comment-section-soewaiyanag.netlify.app/)
 
-## Getting Started
-
-Provide information on how to set up the project locally, including prerequisites and installation instructions.
-
 ### Prerequisites
 
 - Node.js
@@ -36,3 +32,7 @@ cd interactive-comments-section
 
 # Install dependencies
 npm install
+
+# Preview on browser
+npm run dev
+```
